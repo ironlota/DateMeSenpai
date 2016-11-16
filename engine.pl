@@ -11,41 +11,72 @@
 status(running).
 status(not_running).
 
-/* start rule */
+/* game control */
 start:-
-  write('Date Me Senpai!'),
+  intro_screen(Status),
   nl,
-  initial_state(State),
-  control_loop(State).
+  loop(State).
 
-/* end of start */
+loop(State) :-
+  repeat,
+  write('> '),
+  read(State),
+  call(State),
+  fail.
 
-/* initial state */
+intro_screen(Status) :-
+    Status = 'not_running',
+    write('Welcome to Date Me Senpai!'),
+    nl,
+    write('New Game     (new)'),
+    nl,
+    write('Load Game    (load)'),
+    nl,
+    write('Exit Game    (exit)'),
+    nl.
 
-/*end of initial state*.
+intro_screen(Status) :-
+    Status = 'running',
+    write('Welcome to Date Me Senpai!'),
+    nl,
+    write('Resume Game  (resume)'),
+    nl,
+    write('New Game     (new)'),
+    nl,
+    write('Load Game    (load)'),
+    nl,
+    write('Exit Game    (exit)'),
+    nl.
+
+load :-
+    write('Available Save File :'),nl,
+    directory_files('savegame',ListDir),
+    print_dir(ListDir),
+    true,
+    write('Load file : '),
+    read(File),
+    atom_concat('savegame/', File, Files),
+    atom_concat(Files, '.cms',FilePath),
+    loadfile(FilePath),
+    fail.
+
+loadfile(File) :-
+    open_file(File,read,Save),
+    read_save(Save,Cond),
+    close(Save),
+    print_list(Cond),
+    nl.
+
+open_file(F,R,S) :-
+     catch( open(F, read, S),_,( write('can''t open file': F), nl, fail) ).
+     %http://www.amzi.com/manuals/amzi/pro/ref_io.htm#OpenAndClosingFiles
+
+read_save(Stream, L):-
+  read_term(Stream, H, []),
+  (   H == end_of_file
+  ->  L = []
+  ;   L = [H|T],
+      read_save(Stream,T)
+  ). %http://stackoverflow.com/questions/26826470/reading-lines-into-lists-with-prolog
 
 /* inventory */
-inventory([,]).
-/* end of inventory */
-
-/* loop of commands */
-
-/* end of loop of commands */
-
-/* load rule */
-load :- status(X).
-
-/* end of load */
-
-/* exit rule */
-exit :- status(X).
-
-/* end of start */
-
-/* start rule */
-
-
-/* end of start */
-
-/*      a nonassertive version of nani search */
-
