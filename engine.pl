@@ -1,9 +1,7 @@
 /* Date Me Senpai!
         Text-Based Visual Dating Simulation using Prolog
-
         Made by :
             Carry Me Senpai!
-
     Filename : engine.pl
         Consists of primitive facts and rule to start and exit game.
 */
@@ -26,27 +24,11 @@ loop(State) :-
 
 intro_screen(Status) :-
     Status = 'not_running',
-    write('Welcome to Date Me Senpai!'),
-    nl,
-    write('New Game     (new)'),
-    nl,
-    write('Load Game    (load)'),
-    nl,
-    write('Exit Game    (exit)'),
-    nl.
+    write_res_main_menu('res/mainmenu.cml',Status).
 
 intro_screen(Status) :-
     Status = 'running',
-    write('Welcome to Date Me Senpai!'),
-    nl,
-    write('Resume Game  (resume)'),
-    nl,
-    write('New Game     (new)'),
-    nl,
-    write('Load Game    (load)'),
-    nl,
-    write('Exit Game    (exit)'),
-    nl.
+    write_res_main_menu('res/mainmenu.cml',Status).
 
 load :-
     write('Available Save File :'),nl,
@@ -78,5 +60,15 @@ read_save(Stream, L):-
   ;   L = [H|T],
       read_save(Stream,T)
   ). %http://stackoverflow.com/questions/26826470/reading-lines-into-lists-with-prolog
+/* read resources */
 
-/* inventory */
+%mainmenu res (mainmenu.cml)
+write_res_main_menu(File,Status) :-
+    open_file(File,read,Save),
+    read(Save,Res),
+    Res = [H|[T]],
+    H == Status,
+    print_list(T),
+    close(Save),
+    nl.
+
