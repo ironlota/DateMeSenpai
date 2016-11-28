@@ -1,0 +1,27 @@
+['win',
+ 'kelas',
+ [
+    'kotak',
+    'abc',
+    'batu'
+ ],
+ [
+	'0'
+ ],
+ [
+	['kotakMusik','kamar'],
+	['uang', 'kamarOrtu'],
+	['beliBarang','toko'],
+	['payung','lokerPerempuan'],
+	['guard','ruangSatpam'],
+	['batuCinta','halamanBelakang']	,
+	['rapor','ruangGuru']		,
+	['buku','perpustakaan']		,
+	['penghapusan','kelas']		,
+	['cewe','kelas']			,
+	['jawabSoal','depanKelas']
+ ]
+].
+
+
+
