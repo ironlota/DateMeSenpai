@@ -10,12 +10,12 @@
 	['uang', 'kamarOrtu'],
 	['beliBarang','toko'],
 	['payung','lokerPerempuan'],
-	['guard','ruangSatpam'],
+	['satpam','ruangSatpam'],
 	['batuCinta','halamanBelakang']	,
 	['rapor','ruangGuru']		,
 	['buku','perpustakaan']		,
-	['penghapusan','kelas']		,
-	['cewe','kelas']			,
+	['penghapus','kelas']		,
+	['senpai','kelas']			,
 	['jawabSoal','depanKelas']
  ]
 ].

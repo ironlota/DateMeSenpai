@@ -5,6 +5,9 @@
     Filename : engine.pl
         Consists of primitive facts and rule to start and exit game.
 */
+npc(senpai, kelas).
+npc(batuCinta, halamanBelakang).
+npc(satpam, ruangSatpam).
 /* game control */
 start:-
   g_assign(gameStatus, not_running),
@@ -22,11 +25,12 @@ loop :-
 
 available(instruksi).
 available(new).
-available(info).
+available(stat).
 available(exit).
 available(load).
 available(pause).
 available(save).
+available(look).
 
 do(X) :- ( available(X) ->
             X
@@ -220,3 +224,100 @@ parse_dialog([], _).
 parse_dialog([H|T], Dialog) :-
     Cond = [[H|T]],
     g_read(affinity,A).
+
+stat :-
+	info,
+	print_inv.
+
+look :-
+	g_read(location,X),
+	print_curloc,
+	print_inv,
+	write('Daftar object yang ada di ruangan :'),nl,
+	print_obj(X),
+	print_npc,
+	fail.
+
+print_curloc :-
+	write('            _____________________'), nl,
+	write('           |          |          |'),nl,
+	write('           | Kamar    | Kamar    |'),nl,
+	write('           | Ortu     |          |'),nl,
+	write('           |          |          |'),nl,
+	write('           |__________|__________|__________'), nl,
+	write('                      |          |          |'),nl,
+	write('                      |  Rumah   | Toko     |'),nl,
+	write('                      |          |          |'),nl,
+	write('                      |          |          |'),nl,
+	write('                      |__________|__________|__________'), nl,
+	write('                      |          |          |          |'),nl,
+	write('                      | Jalanan  |          | Locker   |'),nl,
+	write('                      |          |          | Perempuan|'),nl,
+	write('                      |          |          |          |'),nl,
+	write(' _____________________|__________|__________|__________|'),nl, 
+	write('|          |          |          |          |          |'),nl,
+	write('| Halaman  | Ruang    | Sekolah  | Lorong   | Locker   |'),nl,
+	write('| Belakang | satpam   |          | Sekolah  |          |'),nl,
+	write('|          |          |          | Timur    |          |'),nl,
+	write('|__________|__________|__________|__________|__________|'),nl,
+	write('	              |          |          |          |'),nl,
+	write('	              | Ruang    |  Lorong  | Kelas    |'),nl,
+	write('	              | Guru     |  Sekolah |          |'),nl,
+	write('	              |          |  Selatan |          |'),nl,
+	write('	              |__________|__________|__________|'),nl,
+	write('                                 |          |          |'),nl,
+	write('                                 |  Perpus  | Depan    |'),nl,
+	write('                                 |  takaan  | Kelas    |'),nl,
+	write('                                 |          |          |'),nl,
+	write('                                 |__________|__________|'),nl,
+	g_read(curLoc, X),
+	write('Kamu sedang berada di: '),
+	write(X),nl.
+
+print_inv :-
+	g_read(inventory,X),
+	(\+X = [] ->
+		write('Item yang ada di inventory kamu: '),nl,
+		print_list(X)
+		;
+		write('Inventory kamu kosong'),nl
+	).
+
+print_obj([]) :- fail.
+print_obj([[X|Y]|[]]) :-
+	!,g_read(curLoc,Z),
+	Y = [V],
+	(Z = V ->
+		(npc(X,Z) ->
+			true
+			;			
+			write(X),
+			nl
+		)
+		;
+		true
+	).
+print_obj([[X|Y]|T]) :-
+	g_read(curLoc,Z),
+	Y = [V],
+	(Z = V ->
+		(npc(X,Z) ->
+			true
+			;			
+			write(X),
+			nl
+		)
+		;
+		true
+	),
+	print_obj(T).
+	
+
+print_npc :-
+	g_read(curLoc,X),
+	(npc(Y,X) ->
+		write('Di ruangan ini terdapat npc : '),
+		write(Y)
+		;
+		write('Tidak ada npc di ruangan ini')
+	),nl.
