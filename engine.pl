@@ -96,19 +96,18 @@ save :-
     atom_concat('savegame/', File, Files),
     atom_concat(Files, '.cms',FilePath),
     save_state(FilePath),
-	fail.	
-	
+    nl,
+	fail.
 
 load :-
     write('Available Save File :'),nl,
     directory_files('savegame',ListDir),
     print_dir(ListDir),
-    true,
     write('Load file : '),
     read(File),
     atom_concat('savegame/', File, Files),
     atom_concat(Files, '.cms',FilePath),
-    loadfile(FilePath),
+    loadfile(FilePath),!,
     fail.
 
 loadfile(File) :-
@@ -116,6 +115,15 @@ loadfile(File) :-
     read_save(Save,Cond),
     assign_list(Cond),
     close(Save).
+
+assign_list(X) :-
+          X = [[A,B,C,D,E]],
+          g_assign(player, A),
+          g_assign(curLoc, B),
+          g_assign(inventory,C),
+          D = [Z],
+          g_assign(affinity,Z),
+          g_assign(location,E).
 
 open_file(F,R,S) :-
      catch( open(F, read, S),_,( write('can''t open file': F), nl, fail) ).
@@ -147,15 +155,6 @@ write_res_main_menu(File,Status) :-
 
 write_res_main_menu(File,Status) :- true.
 
-assign_list(X) :-
-          X = [[A,B,C,D,E]],
-          g_assign(player, A),
-          g_assign(curLoc, B),
-          g_assign(inventory,C),
-          D = [Z],
-          g_assign(affinity,Z),
-          g_assign(location,E).
-
 save_state(File) :-
     g_read(player,A),
     g_read(curLoc,B),
@@ -168,14 +167,19 @@ save_state(File) :-
     write(Save,''','''),
     write(Save,B),
     write(Save,''',['),
-    save_inventory(Save,C),
-    write(Save,'],['''),
-    write(Save,D),
-    write(Save,'''],['),
-    save_location(Save,E),
-    write(Save,']].'),
-    close(Save),
-	fail.
+    ( save_inventory(Save,C) ->
+        write(Save,'],['''),
+        write(Save,D),
+        write(Save,'''],['),
+        ( save_location(Save,E) ->
+            write(Save,']].')
+            ;
+            fail
+        )
+        ;
+        fail
+    ),
+    close(Save).
 
 save_inventory(Save,[]).
 save_inventory(Save,[H]) :-
@@ -204,3 +208,15 @@ save_location(Save,[H|T]) :-
     write(Save,B),
     write(Save,'''],'),
     save_location(Save,T).
+
+load_dialog(File) :-
+    open_file(File,read,Save),
+    read_save(Save,Cond),
+    parse_dialog(Cond, Dialog),
+    g_assign(gameMessage, Dialog),
+    close(Save).
+
+parse_dialog([], _).
+parse_dialog([H|T], Dialog) :-
+    Cond = [[H|T]],
+    g_read(affinity,A).
