@@ -26,6 +26,7 @@ available(info).
 available(exit).
 available(load).
 available(pause).
+available(save).
 
 do(X) :- ( available(X) ->
             X
@@ -38,28 +39,27 @@ exit :-
   nl.
 
 new:-
-write('Liburan telah usai, hari ini merupakan hari pertama sekolah di SMA ITB Bandung'),
-nl,
-write('Dengan penuh antusias kamu pergi ke sekolah berharap mendapatkan cinta baru'),
-nl,
-write('Setibanya di dalam kelas, tiba-tiba ada senpai yang mendekati kamu'),
-nl,
-write('Senpai: Kouhai! Nama kamu siapa?'),
-nl,
-write('(Masukan nama kamu)'),
-nl,
-write(' = '),
-read(X),
-g_assign(player,X),
-g_assign(affinity,'0'),
-g_assign(inventory,[]),
-g_assign(curLoc,'kelas'),
-write('Senpai: Hmph! Ini bukan berati saya ingin tau namamu, t-tapi.. hmph! lupakan!!'),
-nl,
-write('Senpai: By the way, salam kenal ya '),
-write(X),
-write('!'),
-nl.
+	write('Liburan telah usai, hari ini merupakan hari pertama sekolah di SMA ITB Bandung'),
+	nl,
+	write('Dengan penuh antusias kamu pergi ke sekolah berharap mendapatkan cinta baru'),
+	nl,
+	write('Setibanya di dalam kelas, tiba-tiba ada senpai yang mendekati kamu'),
+	nl,
+	write('Senpai: Kouhai! Nama kamu siapa?'),
+	nl,
+	write('(Masukan nama kamu)'),
+	nl,
+	write(' = '),
+	read(X),
+	loadfile('res/init.cmr'),
+	g_assign(player,X),
+	write('Senpai: Hmph! Ini bukan berati saya ingin tau namamu, t-tapi.. hmph! lupakan!!'),
+	nl,
+	write('Senpai: By the way, salam kenal ya '),
+	write(X),
+	write('!'),
+	nl,
+	fail.
 
 instruksi:-
 write('new. -- Untuk memulai game baru'),
@@ -89,6 +89,16 @@ intro_screen :-
     g_read(gameStatus, Status),
     write_res_main_menu('res/mainmenu.cml', Status).
 
+save :-
+	write('Enter file name : '),
+	read(File),
+	nl,write('Save successful!'),
+    atom_concat('savegame/', File, Files),
+    atom_concat(Files, '.cms',FilePath),
+    save_state(FilePath),
+	fail.	
+	
+
 load :-
     write('Available Save File :'),nl,
     directory_files('savegame',ListDir),
@@ -101,12 +111,11 @@ load :-
     loadfile(FilePath),
     fail.
 
-loadfile(File, L) :-
+loadfile(File) :-
     open_file(File,read,Save),
     read_save(Save,Cond),
-    assign_list(L),
-    close(Save),
-    fail.
+    assign_list(Cond),
+    close(Save).
 
 open_file(F,R,S) :-
      catch( open(F, read, S),_,( write('can''t open file': F), nl, fail) ).
@@ -146,3 +155,52 @@ assign_list(X) :-
           D = [Z],
           g_assign(affinity,Z),
           g_assign(location,E).
+
+save_state(File) :-
+    g_read(player,A),
+    g_read(curLoc,B),
+    g_read(inventory,C),
+    g_read(affinity,D),
+    g_read(location,E),
+    open(File,write,Save),
+    write(Save,'['''),
+    write(Save,A),
+    write(Save,''','''),
+    write(Save,B),
+    write(Save,''',['),
+    save_inventory(Save,C),
+    write(Save,'],['''),
+    write(Save,D),
+    write(Save,'''],['),
+    save_location(Save,E),
+    write(Save,']].'),
+    close(Save),
+	fail.
+
+save_inventory(Save,[]).
+save_inventory(Save,[H]) :-
+    write(Save,''''),
+    write(Save,H),
+    write(Save,'''').
+save_inventory(Save,[H|T]) :-
+    write(Save,''''),
+    write(Save,H),
+    write(Save,''','),
+    save_inventory(Save,T).
+
+save_location(Save,[]).
+save_location(Save,[H]) :-
+    H = [A,B],
+    write(Save,'['''),
+    write(Save,A),
+    write(Save,''','''),
+    write(Save,B),
+    write(Save,''']').
+save_location(Save,[H|T]) :-
+    H = [A,B],
+    write(Save,'['''),
+    write(Save,A),
+    write(Save,''','''),
+    write(Save,B),
+    write(Save,'''],'),
+    save_location(Save,T).
