@@ -45,6 +45,7 @@ available(w).
 available(friendzone_senpai).
 available(confess).
 available(examine(Barang)).
+available(give(Barang)).
 
 system_func(new).
 system_func(load).
