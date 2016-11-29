@@ -8,14 +8,12 @@
  [
 	['kotakMusik','kamar'],
 	['uang', 'kamarOrtu'],
-	['beliBarang','toko'],
 	['payung','lokerPerempuan'],
 	['satpam','ruangSatpam'],
 	['batuCinta','halamanBelakang']	,
 	['rapor','ruangGuru']		,
 	['buku','perpustakaan']		,
 	['penghapus','kelas']		,
-	['senpai','kelas']			,
-	['jawabSoal','depanKelas']
+	['senpai','kelas']
  ]
 ].

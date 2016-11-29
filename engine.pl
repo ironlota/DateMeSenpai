@@ -6,6 +6,7 @@ npc(satpam, ruangSatpam).
 start:-
   g_assign(gameStatus, not_running),
   g_assign(gameover,0),
+  g_assign(gamePause, no),
   intro_screen,
   nl,
   loop,!,
@@ -28,12 +29,14 @@ available(instruksi).
 available(new).
 available(stat).
 available(exit).
+available(clear).
 available(load).
 available(pause).
+available(resume).
 available(save).
 available(look).
-available(take(X)).
-available(drop(X)).
+available(take(Barang)).
+available(drop(Barang)).
 available(talk).
 available(n).
 available(s).
@@ -43,53 +46,154 @@ available(friendzone_senpai).
 available(confess).
 available(examine(Barang)).
 
+system_func(new).
+system_func(load).
+system_func(exit).
+system_func(instruksi).
+system_func(clear).
+system_func(resume).
+
+system_func_running(load).
+system_func_running(new).
+system_func_running(resume).
+
+system_func_not_running(new).
+system_func_not_running(load).
+system_func_not_running(exit).
+system_func_not_running(instruksi).
+
+
 do(X) :- ( available(X) ->
-            X
+            g_read(gameStatus,Y),
+            (Y == running ->
+                g_read(gamePause,Z),
+                (Z == ya ->
+                    (system_func(X) ->
+                        X
+                    ;
+                        write('Woop''s you are in Pause state, you only can do new, load, exit, instruksi, clear, resume'),
+                        nl
+                    )
+                ;
+                    (\+system_func_running(X) ->
+                        X
+                    ;
+                        write('Forbidden action!'),nl
+                    )
+                )
             ;
+                (system_func_not_running(X) ->
+                    X
+                ;
+                    write('Forbidden action!'),
+                    nl
+                )
+            )
+        ;
             write('Woop''s invalid functions ' : X),nl
          ).
 
 exit :-
   g_assign(gameover,1),
+  g_assign(gameStatus,not_running),
   write('Thank you kouhai!'),
   nl.
 
+clear :-
+    system(clear).
+
 new:-
-	write('Liburan telah usai, hari ini merupakan hari pertama sekolah di SMA ITB Bandung'),
-	nl,
-	write('Dengan penuh antusias kamu pergi ke sekolah berharap mendapatkan cinta baru'),
-	nl,
-	write('Setibanya di dalam kelas, tiba-tiba ada senpai yang mendekati kamu'),
-	nl,
-	write('Senpai: Kouhai! Nama kamu siapa?'),
-	nl,
-	write('(Masukan nama kamu)'),
-	nl,
-	write(' = '),
-	read(X),
-	loadfile('res/init.cmr'),
-	g_assign(player,X),
-	write('Senpai: Hmph! Ini bukan berati saya ingin tau namamu, t-tapi.. hmph! lupakan!!'),
-	nl,
-	write('Senpai: By the way, salam kenal ya '),
-	write(X),
-	write('!'),
-	nl,
-	fail.
+    g_assign(gameStatus,running),
+    g_assign(gamePause, no),
+    write('Liburan telah usai, hari ini merupakan hari pertama sekolah di SMA ITB Bandung'),
+    nl,
+    write('Dengan penuh antusias kamu pergi ke sekolah berharap mendapatkan cinta baru'),
+    nl,
+    write('Setibanya di dalam kelas, tiba-tiba ada senpai yang mendekati kamu'),
+    nl,
+    write('Senpai: Kouhai! Nama kamu siapa?'),
+    nl,
+    write('(Masukan nama kamu)'),
+    nl,
+    write(' = '),
+    read(X),
+    loadfile('res/init.cmr'),
+    g_assign(player,X),
+    write('Senpai: Hmph! Ini bukan berati saya ingin tau namamu, t-tapi.. hmph! lupakan!!'),
+    nl,
+    write('Senpai: By the way, salam kenal ya '),
+    write(X),
+    write('!'),
+    nl,
+    fail.
 
 instruksi:-
-write('new. -- Untuk memulai game baru'),
-nl,
-write('load. -- Load saved game'),
-nl,
-write('pause. -- Membuka menu game'),
-nl,
-write('resume. -- Melanjutkan game'),
-nl,
-write('info. -- menampilkan atribut'),
-nl,
-write('exit. -- Keluar dari permainan'),
-nl.
+g_read(gameStatus, X),
+g_read(gamePause, Y),
+    (X == not_running ->
+        write('new.       -- Untuk memulai game baru'),
+        nl,
+        write('load.      -- Load saved game'),
+        nl,
+        write('exit.      -- Keluar dari permainan'),
+        nl,
+        write('instruksi. -- Menampilkan command program'),
+        nl
+    ;
+        (Y == ya ->
+            write('resume.    -- Melanjutkan game'),
+            nl,
+            write('new.       -- Untuk memulai game baru'),
+            nl,
+            write('load.      -- Load saved game'),
+            nl,
+            write('exit.      -- Keluar dari permainan'),
+            nl,
+            write('instruksi. -- Menampilkan command program'),
+            nl
+        ;
+            write('pause.            -- Membuka menu game'),
+            nl,
+            write('n.                -- Berpindah ke ruangan utara(atas) dari lokasi sekarang'),
+            nl,
+            write('s.                -- Berpindah ke ruangan selatan(bawah) dari lokasi sekarang'),
+            nl,
+            write('e                 -- Berpindah ke ruangan timur(kanan) dari lokasi sekarang'),
+            nl,
+            write('w                 -- Berpindah ke ruangan barat(kiri) dari lokasi sekarang'),
+            nl,
+            write('stat.             -- Menampilkan atribut dan item yang dimiliki'),
+            nl,
+            write('look.             -- Menampilkan peta, lokasi sekarang, item yang dimiliki, dan npc di ruangan'),
+            nl,
+            write('save.             -- Save game state'),
+            nl,
+            write('take(Barang).     -- Mengambil barang dari lokasi sekarang'),
+            nl,
+            write('drop(Barang).     -- Meletakkan barang dari inventory ke lokasi sekarang'),
+            nl,
+            write('give(Barang).     -- Memberikan barang kepada senpai'),
+            nl,
+            write('talk.             -- Berbicara kepada npc yang ada di lokasi sekarang'),
+            nl,
+            write('instruksi.        -- Menampilkan command program'),
+            nl,
+            write('clear.            -- Membersihkan layar'),
+            nl,
+            write('friendzone_senpai.-- Nyerah dari permainan dan menampilkan summary status'),
+            nl,
+            write('confess.          -- Menyatakan perasaan kepada senpai'),
+            nl,
+            write('jawab(X)          -- Menjawab pertanyaan dengan pilihan X'),
+            nl,
+            write('beli(X)           -- Membeli barang X dengan uang'),
+            nl,
+            write('examine(X)        -- Menampilkan informasi barang X yang terdapat di inventory'),
+            nl,
+            write('exit.             -- Keluar dari permainan'),
+            nl
+        )
+    ).
 
 info :-
   g_read(affinity,A),
@@ -98,24 +202,30 @@ info :-
   write(A), nl.
 
 pause :-
-  g_assign(gameStatus, running),
+  g_assign(gamePause, ya),
   intro_screen.
+
+resume :-
+  g_assign(gameStatus, running),
+  g_assign(gamePause,no).
 
 intro_screen :-
     g_read(gameStatus, Status),
     write_res_main_menu('res/mainmenu.cml', Status).
 
 save :-
-	write('Enter file name : '),
-	read(File),
-	nl,write('Save successful!'),
+    write('Enter file name : '),
+    read(File),
+    nl,write('Save successful!'),
     atom_concat('savegame/', File, Files),
     atom_concat(Files, '.cms',FilePath),
     save_state(FilePath),
     nl,
-	fail.
+    fail.
 
 load :-
+    g_assign(gameStatus,running),
+    g_assign(gamePause, no),
     write('Available Save File :'),nl,
     directory_files('savegame',ListDir),
     print_dir(ListDir),
@@ -226,16 +336,20 @@ save_location(Save,[H|T]) :-
     save_location(Save,T).
 
 stat :-
-	info,
-	print_inv.
+    g_read(player,X),
+    write('Nama : '),
+    write(X),nl,
+    info,
+    print_inv.
 
 look :-
-	g_read(location,X),
-	print_curloc,
-	print_inv,
-	print_obj(X),
-	print_npc,
-	fail.
+    g_read(location,X),
+    print_curloc,
+    print_inv,
+    write('Daftar object yang ada di ruangan :'),nl,
+    print_obj(X),
+    print_npc,
+    fail.
 
 print_curloc :-
   write('            _____________________'), nl,

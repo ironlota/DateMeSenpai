@@ -74,7 +74,7 @@ beli(N) :-
         g_assign(inventory,M),!
       )
       ;
-      write('kamu ga punya uang untuk memebli barang')
+      write('kamu ga punya uang untuk membeli barang')
     )
     ;
     write('kamu harus berada di toko untuk membeli')
