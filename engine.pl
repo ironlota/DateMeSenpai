@@ -233,17 +233,6 @@ save_location(Save,[H|T]) :-
     write(Save,'''],'),
     save_location(Save,T).
 
-load_dialog(File) :-
-    open_file(File,read,Save),
-    read_save(Save,Cond),
-    parsing_file_for_dialog(Cond),
-    close(Save).
-
-parse_dialog([], _).
-parse_dialog([H|T], Dialog) :-
-    Cond = [[H|T]],
-    g_read(affinity,A).
-
 stat :-
 	info,
 	print_inv.
@@ -353,7 +342,7 @@ e :-
 w :-
   moveleft.
 
-talk :- 
+talk :-
     get_npc_based_location(NPC),
     g_assign(npc_active,NPC),
     g_read(gameDialog,B),

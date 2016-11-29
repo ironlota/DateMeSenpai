@@ -40,7 +40,7 @@ friendzone_senpai :-
 			nl,
 			write('Senpai : lucu kamu, GGWP hahaha!'),
 			nl
-		)
+		),
 		summary_stat
 	;
 		write('Tidak ada senpai di '),
