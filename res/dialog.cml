@@ -1,0 +1,45 @@
+[
+	['satpam','85',
+			['Pak Satpam sudah tertidur pulas ditemani musik Victorian.']
+	],
+	['satpam','0',
+			['Ohaiyo! Ada yang bisa dibantu nak?']
+	],
+	['batuCinta','100',
+			['Ayo! Nyatakan perasaanmu kepada Senpai, jangan takut ditolak, aku mendukungmu ;)']
+	],
+	['batuCinta','85',
+			['Poof! Tiba-tiba muncul sesosok perempuan cantik dari batu besar di taman belakang.',
+			'Halo! Sudah lama aku tidak bertemu murid SMA ini! Apa sekarang semua orang membenciku? >;(',
+			'Baiklah, perkenalkan aku Goddess of Love Stone, apa yang kamu mau nak? Kamu sudah tau kan cara kerjaku?',
+			'Berikan aku barang pemberian untukmu dan aku akan menilai apakah hubungan kalian sebaiknya dipertahankan atau dipatahkan!']
+	],
+	['cewe','100',
+			['Ehm Kouhai, ada yang ingin kukatakan kepadamu..',
+			'Begini, sebenarnya aku.. aku..',
+			'Mmm lupakan deh lupakan, sepertinya ini bukan saat yang tepat. :3']
+	],
+	['cewe','85',
+			['Kouhai! Ternyata kamu juga suka musik ya? <3',
+			'Aku mendengar alunan musik dari gerbang depan sekolah tadi!',
+			'Setelah kulihat ternyata ada kotak musik di pos satpam dengan namamu.',
+			'Titipan dari temanmu kah?']
+	],
+	['cewe','80',
+			['Kouhaaai!',
+			'Setelah kupikir-pikir lagi, sepertinya aku selalu bahagia deh bersama kamu ;D']
+	],
+	['cewe','60',
+			['Hai! Apakabar Kouhai?',
+			'Aku merasa bahagia hari ini :D']
+	],
+	['cewe','40',
+			['Hai Kouhai! Kamu baik-baik saja kan? :)']
+	],
+	['cewe','20',
+			['Eh Kouhai! Halo.']
+	],
+	['cewe','0',
+			['Senpai melihatmu sebentar lalu membuang muka seolah tidak terlalu peduli.']
+	]
+].
