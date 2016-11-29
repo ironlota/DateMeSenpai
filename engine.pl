@@ -31,6 +31,12 @@ available(load).
 available(pause).
 available(save).
 available(look).
+available(take(X)).
+available(drop(X)).
+available(n).
+available(s).
+available(e).
+available(w).
 
 do(X) :- ( available(X) ->
             X
@@ -239,46 +245,46 @@ look :-
 	fail.
 
 print_curloc :-
-	write('            _____________________'), nl,
-	write('           |          |          |'),nl,
-	write('           | Kamar    | Kamar    |'),nl,
-	write('           | Ortu     |          |'),nl,
-	write('           |          |          |'),nl,
-	write('           |__________|__________|__________'), nl,
-	write('                      |          |          |'),nl,
-	write('                      |  Rumah   | Toko     |'),nl,
-	write('                      |          |          |'),nl,
-	write('                      |          |          |'),nl,
-	write('                      |__________|__________|__________'), nl,
-	write('                      |          |          |          |'),nl,
-	write('                      | Jalanan  |          | Locker   |'),nl,
-	write('                      |          |          | Perempuan|'),nl,
-	write('                      |          |          |          |'),nl,
-	write(' _____________________|__________|__________|__________|'),nl, 
-	write('|          |          |          |          |          |'),nl,
-	write('| Halaman  | Ruang    | Sekolah  | Lorong   | Locker   |'),nl,
-	write('| Belakang | satpam   |          | Sekolah  |          |'),nl,
-	write('|          |          |          | Timur    |          |'),nl,
-	write('|__________|__________|__________|__________|__________|'),nl,
-	write('	              |          |          |          |'),nl,
-	write('	              | Ruang    |  Lorong  | Kelas    |'),nl,
-	write('	              | Guru     |  Sekolah |          |'),nl,
-	write('	              |          |  Selatan |          |'),nl,
-	write('	              |__________|__________|__________|'),nl,
-	write('                                 |          |          |'),nl,
-	write('                                 |  Perpus  | Depan    |'),nl,
-	write('                                 |  takaan  | Kelas    |'),nl,
-	write('                                 |          |          |'),nl,
-	write('                                 |__________|__________|'),nl,
-	g_read(curLoc, X),
-	write('Kamu sedang berada di: '),
-	write(X),nl.
+  write('            _____________________'), nl,
+  write('           |          |          |'),nl,
+  write('           | Kamar    | Kamar    |'),nl,
+  write('           | Ortu     |          |'),nl,
+  write('           |          |          |'),nl,
+  write('           |__________|__________|__________'), nl,
+  write('                      |          |          |'),nl,
+  write('                      |  Rumah   | Toko     |'),nl,
+  write('                      |          |          |'),nl,
+  write('                      |          |          |'),nl,
+  write('                      |__________|__________|__________'), nl,
+  write('                      |          |          |          |'),nl,
+  write('                      | Jalanan  |          | Locker   |'),nl,
+  write('                      |          |          | Perempuan|'),nl,
+  write('                      |          |          |          |'),nl,
+  write(' _____________________|__________|__________|__________|'),nl,
+  write('|          |          |          |          |          |'),nl,
+  write('| Halaman  | Ruang    | Sekolah  | Lorong   | Locker   |'),nl,
+  write('| Belakang | satpam   |          | Sekolah  |          |'),nl,
+  write('|          |          |          | Timur    |          |'),nl,
+  write('|__________|__________|__________|__________|__________|'),nl,
+  write('           |          |          |          |'),nl,
+  write('           | Ruang    |  Lorong  | Kelas    |'),nl,
+  write('           | Guru     |  Sekolah |          |'),nl,
+  write('           |          |  Selatan |          |'),nl,
+  write('           |__________|__________|__________|'),nl,
+  write('                      |          |          |'),nl,
+  write('                      |  Perpus  | Depan    |'),nl,
+  write('                      |  takaan  | Kelas    |'),nl,
+  write('                      |          |          |'),nl,
+  write('                      |__________|__________|'),nl,
+  g_read(curLoc, X),
+  write('Kamu sedang berada di: '),
+  write(X),nl.
 
 print_inv :-
 	g_read(inventory,X),
 	(\+X = [] ->
 		write('Item yang ada di inventory kamu: '),nl,
-		print_list(X)
+		\+print_list(X)
 		;
 		write('Inventory kamu kosong'),nl
 	).
@@ -290,7 +296,7 @@ print_obj([[X|Y]|[]]) :-
 	(Z = V ->
 		(npc(X,Z) ->
 			true
-			;			
+			;
 			write(X),
 			nl
 		)
@@ -303,7 +309,7 @@ print_obj([[X|Y]|T]) :-
 	(Z = V ->
 		(npc(X,Z) ->
 			true
-			;			
+			;
 			write(X),
 			nl
 		)
@@ -311,7 +317,7 @@ print_obj([[X|Y]|T]) :-
 		true
 	),
 	print_obj(T).
-	
+
 
 print_npc :-
 	g_read(curLoc,X),
@@ -321,3 +327,15 @@ print_npc :-
 		;
 		write('Tidak ada npc di ruangan ini')
 	),nl.
+
+n :-
+  moveup.
+
+s :-
+  movedown.
+
+e :-
+  moveright.
+
+w :-
+  moveleft.
