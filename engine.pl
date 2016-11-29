@@ -233,7 +233,6 @@ look :-
 	g_read(location,X),
 	print_curloc,
 	print_inv,
-	write('Daftar object yang ada di ruangan :'),nl,
 	print_obj(X),
 	print_npc,
 	fail.
@@ -304,7 +303,10 @@ print_obj([[X|Y]|T]) :-
 		(npc(X,Z) ->
 			true
 			;
+			write('Terdapat '),
 			write(X),
+			write(' di '),
+            write(Z),
 			nl
 		)
 		;
@@ -405,4 +407,19 @@ print_deskripsi(Barang,[[[A,B]|T]]) :-
 		write(B),nl
 	;
 		print_deskripsi(Barang,[T])
+	).
+
+loadscenetext(Place) :-
+	open_file('res/scenetext.cmr',read,Text),
+	read(Text,Res),
+	scenetext(Place,Res),
+	close(Text).
+
+scenetext(Place,Res) :-
+	Res = [A|B],
+	A = [H,T],
+	(H == Place ->
+		write(T),nl,!
+	;
+		scenetext(Place,B)
 	).

@@ -48,6 +48,9 @@ moveup :-
   H==X,
   M=[A,B,C,D],
   goto(A),
+  g_read(location,L),
+  loadscenetext(A),nl,
+  print_obj(L),
   fail.
 
 movedown :-
@@ -57,6 +60,9 @@ movedown :-
   H==X,
   M=[A,B,C,D],
   goto(B),
+  g_read(location,L),
+  loadscenetext(B),nl,
+  print_obj(L),
   fail.
 
 moveleft :-
@@ -66,6 +72,9 @@ moveleft :-
   H==X,
   M=[A,B,C,D],
   goto(C),
+  g_read(location,L),
+  loadscenetext(C),nl,
+  print_obj(L),
   fail.
 
 moveright :-
@@ -75,6 +84,9 @@ moveright :-
   H==X,
   M=[A,B,C,D],
   goto(D),
+  g_read(location,L),
+  loadscenetext(D),nl,
+  print_obj(L),
   fail.
 
 
