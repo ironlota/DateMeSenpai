@@ -21,8 +21,29 @@ confess :-
 		;
 		write('Kamu difriendzone')
 	  ),nl,
-      summary_stat,
-      g_assign(gameover,1)
+      summary_stat
       ;
       write('Tidak ada senpai di ruangan ini'),nl
   ).
+
+friendzone_senpai :-
+	g_read(affinity,X),
+	g_read(curLoc, Y),
+	(==(Y,kelas) ->
+		(X == 100 ->
+			write('Senpai : jadi.. selama ini kamu nge-friendzone-in AKU?'),
+			nl,
+			write('Senpai : tega kamu, hiks..'),
+			nl
+		;
+			write('Senpai : loh, bukannya memang kita memang SEBATAS teman ya?'),
+			nl,
+			write('Senpai : lucu kamu, GGWP hahaha!'),
+			nl
+		),
+		summary_stat
+	;
+		write('Tidak ada senpai di '),
+		write(Y),
+		nl
+	).

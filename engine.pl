@@ -14,7 +14,8 @@ start:-
   g_assign(gameover,0),
   intro_screen,
   nl,
-  loop.
+  loop,!,
+  fail.
 
 loop :-
   repeat,
@@ -22,13 +23,12 @@ loop :-
   read(State),
   do(State),
   g_read(gameover,X),
-  (State == exit;
-   X == 1).
+  (X == 1).
 
 %Edit di sini untuk menambahkan status akhir game
 summary_stat :-
   write('Permainan berakhir'),
-  nl,true.
+  nl,g_assign(gameover,1),true.
 
 
 available(instruksi).
@@ -41,10 +41,12 @@ available(save).
 available(look).
 available(take(X)).
 available(drop(X)).
+available(talk).
 available(n).
 available(s).
 available(e).
 available(w).
+available(friendzone_senpai).
 available(confess).
 
 do(X) :- ( available(X) ->
@@ -54,10 +56,12 @@ do(X) :- ( available(X) ->
          ).
 
 exit :-
+  g_assign(gameover,1),
   write('Thank you kouhai!'),
   nl.
 
 new:-
+	load_dialog('res/dialog.cmr'),
 	write('Liburan telah usai, hari ini merupakan hari pertama sekolah di SMA ITB Bandung'),
 	nl,
 	write('Dengan penuh antusias kamu pergi ke sekolah berharap mendapatkan cinta baru'),
@@ -119,6 +123,7 @@ save :-
 	fail.
 
 load :-
+    load_dialog('res/dialog.cmr'),
     write('Available Save File :'),nl,
     directory_files('savegame',ListDir),
     print_dir(ListDir),
@@ -228,18 +233,6 @@ save_location(Save,[H|T]) :-
     write(Save,'''],'),
     save_location(Save,T).
 
-load_dialog(File) :-
-    open_file(File,read,Save),
-    read_save(Save,Cond),
-    parse_dialog(Cond, Dialog),
-    g_assign(gameMessage, Dialog),
-    close(Save).
-
-parse_dialog([], _).
-parse_dialog([H|T], Dialog) :-
-    Cond = [[H|T]],
-    g_read(affinity,A).
-
 stat :-
 	info,
 	print_inv.
@@ -348,3 +341,62 @@ e :-
 
 w :-
   moveleft.
+
+talk :-
+    get_npc_based_location(NPC),
+    g_assign(npc_active,NPC),
+    g_read(gameDialog,B),
+    write_dialog(B),
+    nl,
+    fail.
+
+write_dialog([]).
+write_dialog([[A,B]|T]) :-
+	g_read(npc_active,Z),
+	(==(B,'1') ->
+		write(Z),
+		write(' : '),
+		write(A),
+		nl
+	;
+		write(A),
+		nl
+	),
+	write_dialog(T).
+
+load_dialog(File) :-
+    open_file(File,read,Save),
+    read_save(Save,Cond),
+    parsing_file_for_dialog(Cond),
+    close(Save).
+
+get_npc_based_location(NPC) :-
+    g_read(curLoc,Loc),
+    npc(NPC,Loc).
+
+parsing_file_for_dialog(L) :-
+    parse_char_dialog(L,X),
+    parse_dialog(X).
+
+parse_char_dialog([[[A,B],[C,D],[E,F]]],X) :-
+    get_npc_based_location(W),
+    ( ==(W,senpai) ->
+        X = B
+    ;
+        ( ==(W,satpam) ->
+            X = D
+        ;
+            X = F
+        )
+    ).
+
+parse_dialog([]).
+parse_dialog([H|T]) :-
+    H= [A,B],
+    g_read(affinity,Z),
+    (Z @>= A ->
+        g_assign(gameDialog, B),
+        !
+    ;
+        parse_dialog(T)
+    ).
