@@ -14,32 +14,32 @@
 			'Baiklah, perkenalkan aku Goddess of Love Stone, apa yang kamu mau nak? Kamu sudah tau kan cara kerjaku?',
 			'Berikan aku barang pemberian untukmu dan aku akan menilai apakah hubungan kalian sebaiknya dipertahankan atau dipatahkan!']
 	],
-	['cewe','100',
+	['senpai','100',
 			['Ehm Kouhai, ada yang ingin kukatakan kepadamu..',
 			'Begini, sebenarnya aku.. aku..',
 			'Mmm lupakan deh lupakan, sepertinya ini bukan saat yang tepat. :3']
 	],
-	['cewe','85',
+	['senpai','85',
 			['Kouhai! Ternyata kamu juga suka musik ya? <3',
 			'Aku mendengar alunan musik dari gerbang depan sekolah tadi!',
 			'Setelah kulihat ternyata ada kotak musik di pos satpam dengan namamu.',
 			'Titipan dari temanmu kah?']
 	],
-	['cewe','80',
+	['senpai','80',
 			['Kouhaaai!',
 			'Setelah kupikir-pikir lagi, sepertinya aku selalu bahagia deh bersama kamu ;D']
 	],
-	['cewe','60',
+	['senpai','60',
 			['Hai! Apakabar Kouhai?',
 			'Aku merasa bahagia hari ini :D']
 	],
-	['cewe','40',
+	['senpai','40',
 			['Hai Kouhai! Kamu baik-baik saja kan? :)']
 	],
-	['cewe','20',
+	['senpai','20',
 			['Eh Kouhai! Halo.']
 	],
-	['cewe','0',
+	['senpai','0',
 			['Senpai melihatmu sebentar lalu membuang muka seolah tidak terlalu peduli.']
 	]
 ].
