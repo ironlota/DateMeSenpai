@@ -50,7 +50,7 @@ To check whether your installation success or not
 
 ## Version
 
-0.1 Beta
+0.1 Beta <br />
 1.0 Major Release
 
 ## Authors
