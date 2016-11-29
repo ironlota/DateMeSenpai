@@ -4,7 +4,40 @@ jawab(A) :-
   g_read(curLoc,X),
   (X == depanKelas ->
     (A == a ->
-      write('Wah! kamu pintar')
+      write('                  ___ .~- ` `\' "\' ` -~. ____'),nl,
+      write('                 :~+.-`  .-"-.  .-"~._  `-.+~:'),nl,
+      write('                 !  /  -`     `       `\'--~:.l'),nl,
+      write('                  :\'         .              \'.'),nl,
+      write('                 /'),nl,
+      write('                /-".        :  .            \`'),nl,
+      write('                 .`      /.-"\\ : `-  ^       :`'),nl,
+      write('                 ^      "`    `.    \\:\'._  \\ `!`'),nl,
+      write('                :     :-===-.    .-===-.\\  .!/\'.'),nl,
+      write('                 \'.; /     .             : :'),nl,
+      write('                : `.l   .mPm.\\    .mPm.  |/    l'),nl,
+      write('               .     :                   :\':   |'),nl,
+      write('                   \\ \'        d:         \' /   :'),nl,
+      write('              :     \'-:        "        :-;:   `'),nl,
+      write('              .       .     ._..._.     :::`   _'),nl,
+      write('             /        ::               ;::;.   !'),nl,
+      write('            .      .  :;:.           .::::;:   \''),nl,
+      write('            . :  : :  `:::\'.       .\'::::;::.   '),nl,
+      write('            \'/.  .  .  `::l \'-. .-\' \'|:::::::.   ;'),nl,
+      write('            : |: :: ::__`.-.        _.-.::::::_  ;'),nl,
+      write('            .~"` \\ \\ :`"/    `-..- `     \"`//    "~.'),nl,
+      write('           /      \\ \\ .   ___ /\\ ___      .//        '),nl,
+      write('          :        \\ \\.-`  _.~l)=~  `\' -.:"'),nl,
+      write('          `         \\\'/  .    ":`-.       \\            :'),nl,
+      write('          .           -::    _lm.      .`         zi. |'),nl,
+      write('                      \\ /`-\'  :::- ::.:'),nl,
+      write('                       :       !:`   ":'),nl,
+      write('                            :  .      \''),nl,
+      write('                       "-._::  ^: .    ;'),nl,
+      write('                            `-" \\::_.~\''),nl,
+      write('                             : : :'),nl,
+      write('                             \' \' :'),nl,
+      write('                               \' :'),nl,
+      write('Senpai : Wah! kamu pintar')
       ;
       write('Jawaban kamu salah, Coba lagi!'))
     ;

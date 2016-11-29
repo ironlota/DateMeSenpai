@@ -8,7 +8,7 @@
                  ['Mmm lupakan deh lupakan, sepertinya ini bukan saat yang tepat. :3','1']
 		    ]
 		],
-		['85',
+		['80',
             [
 			     ['Kouhai! Ternyata kamu juga suka musik ya? <3','1'],
                  ['Aku mendengar alunan musik dari gerbang depan sekolah tadi!','1'],
@@ -16,26 +16,21 @@
                  ['Titipan dari temanmu kah?','1']
 		    ]
 		],
-        ['80',
+        ['60',
             [
                  ['Kouhaaai!','1'],
                  ['Setelah kupikir-pikir lagi, sepertinya aku selalu bahagia deh bersama kamu ;D','1']
             ]
         ],
-        ['60',
+        ['40',
             [
                  ['Hai! Apakabar Kouhai?','1'],
                  ['Aku merasa bahagia hari ini :D', '1']
             ]
         ],
-        ['40',
-            [
-                 ['Hai Kouhai! Kamu baik-baik saja kan? :)', '1']
-            ]
-        ],
         ['20',
             [
-                 ['Eh Kouhai! Halo.', '1']
+                 ['Hai Kouhai! Kamu baik-baik saja kan? :)', '1']
             ]
         ],
         ['0',
@@ -47,10 +42,10 @@
     ],
     ['satpam',
 	[
-		['85',
+		['80',
             [
 			     ['Pak Satpam sudah tertidur pulas ditemani musik Victorian.','0'],
-                 ['miaww','1']
+                 ['miaww..','1']
 		    ]
         ],
 		['0',
@@ -67,7 +62,7 @@
                 ['Ayo! Nyatakan perasaanmu kepada Senpai, jangan takut ditolak, aku mendukungmu ;)', '1']
             ]
         ],
-        ['85',
+        ['80',
             [
                 ['Poof! Tiba-tiba muncul sesosok perempuan cantik dari batu besar di taman belakang.', '0'],
                 ['Halo! Sudah lama aku tidak bertemu murid SMA ini! Apa sekarang semua orang membenciku? >;(','1'],

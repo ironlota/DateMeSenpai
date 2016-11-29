@@ -3,7 +3,7 @@
 /*place([tempatnya,[up,down,left,right]])*/
 place([kamarOrtu,[kosong,kosong,kosong,kamar]]).
 place([kamar,[kosong,rumah,kamarOrtu,kosong]]).
-place([rumah,[kamarOrtu,jalanan,kosong,toko]]).
+place([rumah,[kamar,jalanan,kosong,toko]]).
 place([toko,[kosong,kosong,rumah,kosong]]).
 place([jalanan,[rumah,sekolah,toko,kosong]]).
 place([sekolah,[jalanan,lorongSekolahSelatan,ruangSatpam,lorongSekolahTimur]]).
@@ -20,7 +20,7 @@ place([depanKelas,[kelas,kosong,perpustakaan,kosong]]).
 
 
 goto(kosong):-!,
-  kata(['Ga bisa gerak kesana']),
+  kata(['Kamu menabrak tembok.']),
   fail.
 goto(Location):-
   can_go(Location),
@@ -47,7 +47,7 @@ moveup :-
   Y=[H,M],
   H==X,
   M=[A,B,C,D],
-  goto(A),
+  gotocond(A),
   g_read(location,L),
   loadscenetext(A),nl,
   print_obj(L),
@@ -59,7 +59,7 @@ movedown :-
   Y=[H,M],
   H==X,
   M=[A,B,C,D],
-  goto(B),
+  gotocond(B),
   g_read(location,L),
   loadscenetext(B),nl,
   print_obj(L),
@@ -71,7 +71,7 @@ moveleft :-
   Y=[H,M],
   H==X,
   M=[A,B,C,D],
-  goto(C),
+  gotocond(C),
   g_read(location,L),
   loadscenetext(C),nl,
   print_obj(L),
@@ -83,7 +83,7 @@ moveright :-
   Y=[H,M],
   H==X,
   M=[A,B,C,D],
-  goto(D),
+  gotocond(D),
   g_read(location,L),
   loadscenetext(D),nl,
   print_obj(L),
@@ -97,4 +97,42 @@ kata([H|T]):-
   write(H),
   kata(T).
 
+gotocond(X) :-
+	g_read(player,N),
+	(X == kamarOrtu ->
+		(have(rapor) ->
+			write('Ibu: Halo '),write(N),write(' apa yang bisa Ayah dan Ibu bantu?'),nl,
+			goto(X)
+		;
+			g_read(nama,N),
+			write('Ibu: Halo '),write(N),write(' bagaimana dengan rapormu? Ayo cepat ambil dulu di sekolah!'),nl,fail
+		)
+	; X == jalanan ->
+		(have(payung) ->
+			goto(X)
+		;
+			write('Hujan sangat deras! Aku belum bisa pulang sekarang, mungkin lebih baik aku kebali ke kelas'),nl,fail
+		)
+	; X == halamanBelakang ->
+		(have(kunciSatpam) ->
+			write('Pintu belakang berhasil terbuka dengan kunci dari ruang satpam. Pintu itu agak berat, mungkin karena lama tidak dibuka..'),nl,
+			goto(X)
+		;
+			write('Pintu ini terkunci rapat.'),nl,fail
+		)
+	; X == lokerPerempuan ->
+		(have(kunciLoker) ->
+			write('Sebaiknya aku melakukan ini dengan cepat.'),nl,
+			goto(X)
+		;
+			write('Aku pasti memiliki otak porno apabila masuk ke sini tanpa alasan.'),nl,fail
+		)
+	;
+		goto(X)
+	).
+ 
+have(X) :-
+	g_read(inventory,I),
+	member(X,I).
+	
 %bantuan dari www.amzi.com

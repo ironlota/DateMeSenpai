@@ -1,3 +1,13 @@
-[ ['buku','buku untuk belajar'],
- ['penghapus','sebuah penghapus']
+[ 
+ ['buku','Buku dengan nama Senpai di halaman depan.'],
+ ['penghapus','Penghapus pink dengan aroma bunga yang imut.'],
+ ['payung','Payung dari Senpai yang diberikan kepadaku untuk menembus hujan.'],
+ ['kunciLoker','Kunci untuk membuka loker senpai.'],
+ ['kunciBelakang','Kunci untuk membuka halaman belakang.'],
+ ['uang','Beberapa ratus Yen dari orangtuaku karena rapor yang bagus.'],
+ ['note','Beli kacamata. Papan didepan mulai tidak terlihat'],
+ ['jimatKeberuntungan','Untuk Kouhai, Dari Senpai.'],
+ ['kotakMusik','Kotak yang dapat memainkan musik yang sangan mengundang kantuk.'],
+ ['rapor','Raporku yang nilainya terbang dengan warna. ;)'],
+ ['kacamata','Kacamata untuk Senpai dari note yang ditemukan di lokernya.']
 ].

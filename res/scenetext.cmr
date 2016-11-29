@@ -1,12 +1,12 @@
 [
 	['kamar',
-			'Ini adalah kamar tempatku tidur biasanya. Banyak piala dari lomba kempo dan poster-poster Samurai terkenal.'
+			'Ini adalah kamar tempatku tidur biasanya.'
 	],
 	['kamarOrtu',
-			'Kamar Ayah dan Ibu tertata sangat rapi, mungkin karena mereka sedang pergi ke luar kota.'
+			'Kamar Ayah dan Ibu tertata sangat rapi.'
 	],
 	['rumah',
-			'Terlihat foto-fotoku memenangkan kejuaraan kempo, juga beberapa foto keluarga. Terasa khas tekstur lantai kayu rumahku.'
+			'Ada beberapa foto keluarga. Terasa khas tekstur lantai kayu rumahku.'
 	],
 	['toko',
 			'Toko langgananku dari kecil, barang yang ia jual selalu berubah tiap minggunya.'
@@ -24,22 +24,22 @@
 			'Pak satpam sedang menjaga gerbang depan, ruangannya tertata cukup rapi.'
 	],
 	['halamanBelakang',
-			'Biasanya murid-murid yang sudah memiliki pacar berduaan disini. Ada batu besar yang kabarnya sudah ada sejak sebelum sekolah didirikan'
+			'Ada batu besar yang kabarnya sudah ada sejak sebelum sekolah didirikan'
 	],
 	['lorongSekolahSelatan',
 			'Lorong sekolah selatan adalah "lorong kutu buku", ada perpustakaan di ujung lorong ini.'
 	],
 	['lorongSekolahTimur',
-			'Banyak teman yang ku kenal di "lorong atlet", terutama teman latihan kempo ku dulu.'
+			'Banyak teman yang ku kenal di "lorong atlet", terutama teman latihan kempo ku.'
 	],
 	['loker',
-			'Ada loker khusus untukku si "jagoan kempo". Sekarang loker itu selalu kosong.'
+			'Loker pria yang sangat berantakan dan penuh dengan ketelanjangan.'
 	],
 	['kelas',
 			'Aku berada di ruang kelasku, disini ilmu ditimba dan buku ditiduri seperti bantal.'
 	],
 	['depanKelas',
-			'Sial. Soalnya terlihat lebih susah dari dekat daripada dari jauh, kelihatannya aku perlu kacamata baru.'
+			'Ada soal di depan kelas : Termasuk bahasa pemrograman apakah prolog? | [a]Deklaratif | [b]Prosedural | [c]Fungsional |'
 	],
 	['perpustakaan',
 			'Dilarang berisik disini! Tulisan besar di dinding ditulis dengan warna merah. Mungkin itu ditulis dengan darah korban di penjaga perpus galak itu. Sebaiknya aku tidak macam-macam.'

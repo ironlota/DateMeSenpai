@@ -42,10 +42,12 @@ available(n).
 available(s).
 available(e).
 available(w).
+available(jawab(Jawaban)).
 available(friendzone_senpai).
 available(confess).
 available(examine(Barang)).
 available(give(Barang)).
+available(beli(Barang)).
 
 system_func(new).
 system_func(load).
@@ -503,7 +505,7 @@ parse_dialog([]).
 parse_dialog([H|T]) :-
     H= [A,B],
     g_read(affinity,Z),
-    (Z @>= A ->
+    (compare(=,A,Z) ->
         g_assign(gameDialog, B),
         !
     ;
