@@ -57,3 +57,26 @@ examine(Barang) :-
 	;
 		write('Item tidak ada di inventory'),nl
 	).
+
+gabisa([senpai,satpam,batuCinta,kamar,kamarOrtu,rumah,toko,jalanan,sekolah,ruangGuru,ruangSatpam,halamanBelakang,lorongSekolahSelatan,lorongSekolahTimur,loker,kelas,depanKelas,perpustakaan,lokerPerempuan]).
+
+beli(N) :-
+  g_read(curLoc,X),
+  (X==toko ->
+    g_read(inventory,Y),
+    (member(uang,Y) ->
+      gabisa(Gab),
+      (member(N,Gab) ->
+        write('item tersebut dialarang untuk dibeli'),!
+        ;
+        delete(Y,uang,Z),
+        append([N],Z,M),
+        g_assign(inventory,M),!
+      )
+      ;
+      write('kamu ga punya uang untuk memebli barang')
+    )
+    ;
+    write('kamu harus berada di toko untuk membeli')
+  ).
+
