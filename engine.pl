@@ -11,6 +11,7 @@ npc(satpam, ruangSatpam).
 /* game control */
 start:-
   g_assign(gameStatus, not_running),
+  g_assign(gameover,0),
   intro_screen,
   nl,
   loop.
@@ -20,8 +21,15 @@ loop :-
   write('> '),
   read(State),
   do(State),
-  (State == exit),
-  true.
+  g_read(gameover,X),
+  (State == exit;
+   X == 1).
+
+%Edit di sini untuk menambahkan status akhir game
+summary_stat :-
+  write('Permainan berakhir'),
+  nl,true.
+
 
 available(instruksi).
 available(new).
@@ -37,6 +45,7 @@ available(n).
 available(s).
 available(e).
 available(w).
+available(confess).
 
 do(X) :- ( available(X) ->
             X

@@ -10,7 +10,8 @@ place([sekolah,[jalanan,lorongSekolahSelatan,ruangSatpam,lorongSekolahTimur]]).
 place([ruangSatpam,[kosong,ruangGuru,halamanBelakang,sekolah]]).
 place([halamanBelakang,[kosong,kosong,kosong,ruangSatpam]]).
 place([lorongSekolahTimur,[kosong,kelas,sekolah,loker]]).
-place([loker,[kosong,kosong,lorongSekolahTimur,kosong]]).
+place([loker,[lokerPerempuan,kosong,lorongSekolahTimur,kosong]]).
+place([lokerPerempuan,[kosong,loker,kosong,kosong]]).
 place([ruangGuru,[ruangSatpam,kosong,kosong,lorongSekolahSelatan]]).
 place([lorongSekolahSelatan,[sekolah,perpustakaan,ruangGuru,kelas]]).
 place([kelas,[lorongSekolahTimur,depanKelas,lorongSekolahSelatan,kosong]]).
