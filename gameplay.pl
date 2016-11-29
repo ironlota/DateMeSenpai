@@ -47,3 +47,13 @@ friendzone_senpai :-
 		write(Y),
 		nl
 	).
+
+examine(Barang) :-
+	baca_deskripsi,
+	g_read(inventory,Y),
+	g_read(deskripsi,Z),
+	(member(Barang,Y) ->
+		print_deskripsi(Barang,Z)
+	;
+		write('Item tidak ada di inventory'),nl
+	).

@@ -41,6 +41,7 @@ available(e).
 available(w).
 available(friendzone_senpai).
 available(confess).
+available(examine(Barang)).
 
 do(X) :- ( available(X) ->
             X
@@ -391,3 +392,17 @@ parse_dialog([H|T]) :-
     ;
         parse_dialog(T)
     ).
+
+baca_deskripsi :-
+    open_file('res/deskripsi.cmr',read,Save),
+    read_save(Save,Cond),
+	g_assign(deskripsi,Cond),
+	close(Save).
+
+print_deskripsi(Barang,[[]]) :- write(Barang), write(' merupakan barang yang kamu beli di toko'),nl.
+print_deskripsi(Barang,[[[A,B]|T]]) :-
+	(Barang == A ->
+		write(B),nl
+	;
+		print_deskripsi(Barang,[T])
+	).
