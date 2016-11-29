@@ -12,8 +12,6 @@ print_dir([]).
 print_dir([H|T]) :- H='..', write(''),print_dir(T).
 print_dir([H|T]) :- H='.', write(''),print_dir(T).
 print_dir([H|T]) :-
-    \+H='..',
-    \+H='.',
     write(H),
     nl,
     print_dir(T).

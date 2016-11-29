@@ -1,0 +1,80 @@
+[
+    ['senpai',
+	[
+		['100',
+            [
+			     ['Ehm Kouhai, ada yang ingin kukatakan kepadamu..','1'],
+                 ['Begini, sebenarnya aku.. aku..', '1'],
+                 ['Mmm lupakan deh lupakan, sepertinya ini bukan saat yang tepat. :3','1']
+		    ]
+		],
+		['85',
+            [
+			     ['Kouhai! Ternyata kamu juga suka musik ya? <3','1'],
+                 ['Aku mendengar alunan musik dari gerbang depan sekolah tadi!','1'],
+                 ['Setelah kulihat ternyata ada kotak musik di pos satpam dengan namamu.','1'],
+                 ['Titipan dari temanmu kah?','1']
+		    ]
+		],
+        ['80',
+            [
+                 ['Kouhaaai!','1'],
+                 ['Setelah kupikir-pikir lagi, sepertinya aku selalu bahagia deh bersama kamu ;D','1']
+            ]
+        ],
+        ['60',
+            [
+                 ['Hai! Apakabar Kouhai?','1'],
+                 ['Aku merasa bahagia hari ini :D', '1']
+            ]
+        ],
+        ['40',
+            [
+                 ['Hai Kouhai! Kamu baik-baik saja kan? :)', '1']
+            ]
+        ],
+        ['20',
+            [
+                 ['Eh Kouhai! Halo.', '1']
+            ]
+        ],
+        ['0',
+            [
+                 ['Senpai melihatmu sebentar lalu membuang muka seolah tidak terlalu peduli.', '0']
+            ]
+        ]
+	]
+    ],
+    ['satpam',
+	[
+		['85',
+            [
+			     ['Pak Satpam sudah tertidur pulas ditemani musik Victorian.','0'],
+                 ['miaww','1']
+		    ]
+        ],
+		['0',
+            [
+			     ['Ohaiyo! Ada yang bisa dibantu nak?', '1']
+		    ]
+		]
+    ]
+    ],
+    ['batuCinta',
+	[
+        ['100',
+            [
+                ['Ayo! Nyatakan perasaanmu kepada Senpai, jangan takut ditolak, aku mendukungmu ;)', '1']
+            ]
+        ],
+        ['85',
+            [
+                ['Poof! Tiba-tiba muncul sesosok perempuan cantik dari batu besar di taman belakang.', '0'],
+                ['Halo! Sudah lama aku tidak bertemu murid SMA ini! Apa sekarang semua orang membenciku? >;(','1'],
+                ['Baiklah, perkenalkan aku Goddess of Love Stone, apa yang kamu mau nak? Kamu sudah tau kan cara kerjaku?','1'],
+                ['Berikan aku barang pemberian untukmu dan aku akan menilai apakah hubungan kalian sebaiknya dipertahankan atau dipatahkan!', '1']
+            ]
+        ]
+	]
+    ]
+].
