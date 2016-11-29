@@ -8,6 +8,7 @@
 npc(senpai, kelas).
 npc(batuCinta, halamanBelakang).
 npc(satpam, ruangSatpam).
+
 /* game control */
 start:-
   g_assign(gameStatus, not_running),
@@ -29,7 +30,6 @@ loop :-
 summary_stat :-
   write('Permainan berakhir'),
   nl,g_assign(gameover,1),true.
-
 
 available(instruksi).
 available(new).
@@ -347,7 +347,6 @@ talk :-
     g_assign(npc_active,NPC),
     g_read(gameDialog,B),
     write_dialog(B),
-    nl,
     fail.
 
 write_dialog([]).
@@ -380,10 +379,10 @@ parsing_file_for_dialog(L) :-
 
 parse_char_dialog([[[A,B],[C,D],[E,F]]],X) :-
     get_npc_based_location(W),
-    ( ==(W,senpai) ->
+    (==(W,senpai) ->
         X = B
     ;
-        ( ==(W,satpam) ->
+        (==(W,satpam) ->
             X = D
         ;
             X = F
