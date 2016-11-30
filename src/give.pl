@@ -18,7 +18,7 @@ give(X) :-
 giveguard(X) :-
 	g_read(affinity,A),
 	(X == kotakMusik ->
-		(A == 40 ->
+		(A == '40' ->
 			write('Kamu menyalakan kotak musik dekat pos satpam dan perlahan-lahan pak satpam tertidur pulas.'),nl,
 			g_assign(affinity,'80'),
 			g_read(inventory,I),
@@ -62,7 +62,7 @@ givegirl(X) :-
 		delete(I,X,N),
 		g_assign(inventory,N)
 	; X == buku ->
-		(A == 20 ->
+		(A == '20' ->
 			write('Hai lagi Kouhai, ada perlu apa?'),nl,
 			write('Oh! Itu buku yang aku tinggalkan di perpustakaan!'),nl,
 			write('Bagaimana kamu bisa tahu itu buku milikku?'),nl,
