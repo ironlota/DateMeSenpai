@@ -3,13 +3,25 @@ benda(uang).
 benda(payung).
 benda(rapor).
 benda(buku).
+benda(kunciSatpam).
 benda(penghapus).
 
 take(Thing):-
-  adabarang(Thing),
-  is_takable(Thing),
-  barangdipindah(Thing),
-  kata(['Sekarang kamu punya ',Thing]),!.
+  g_read(affinity,A),
+  (Thing == kunciSatpam ->
+      (A == '80' ->
+          adabarang(Thing),
+          barangdipindah(Thing),
+          kata(['Sekarang kamu punya ',Thing]),!
+      ;
+          write('satpam : Woi, ngapain kamu?!'),nl,!
+      )
+  ;
+      adabarang(Thing),
+      is_takable(Thing),
+      barangdipindah(Thing),
+      kata(['Sekarang kamu punya ',Thing]),!
+  ).
 
 adabarang(Thing):-
   g_read(curLoc,X),

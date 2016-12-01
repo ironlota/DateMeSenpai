@@ -18,12 +18,11 @@ give(X) :-
 giveguard(X) :-
 	g_read(affinity,A),
 	(X == kotakMusik ->
-		(A == '40' ->
+		(A == '60' ->
 			write('Kamu menyalakan kotak musik dekat pos satpam dan perlahan-lahan pak satpam tertidur pulas.'),nl,
 			g_assign(affinity,'80'),
 			g_read(inventory,I),
-			append([kunciSatpam],I,Z),
-			delete(Z,X,D),
+			delete(I,X,D),
 			g_assign(inventory,D)
 		;
 			write('Sepertinya hal ini bisa ditunda, sebaiknya aku menemui senpai terlebih dahulu.'),nl

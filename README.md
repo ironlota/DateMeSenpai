@@ -50,8 +50,9 @@ To check whether your installation success or not
 
 ## Version
 
-0.1 Beta <br />
-1.0 Major Release
+0.1 Beta  <br />
+1.0 Major Release <br />
+1.1 Fixing Bug for Major Release
 
 ## Authors
 

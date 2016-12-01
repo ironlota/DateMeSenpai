@@ -104,7 +104,7 @@ gotocond(X) :-
 			write('Ibu: Halo '),write(N),write(' apa yang bisa Ayah dan Ibu bantu?'),nl,
 			goto(X)
 		;
-			g_read(nama,N),
+			g_read(player,N),
 			write('Ibu: Halo '),write(N),write(' bagaimana dengan rapormu? Ayo cepat ambil dulu di sekolah!'),nl,fail
 		)
 	; X == jalanan ->
@@ -130,9 +130,9 @@ gotocond(X) :-
 	;
 		goto(X)
 	).
- 
+
 have(X) :-
 	g_read(inventory,I),
 	member(X,I).
-	
+
 %bantuan dari www.amzi.com

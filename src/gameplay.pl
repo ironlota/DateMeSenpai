@@ -49,7 +49,7 @@ confess :-
   g_read(affinity,X),
   g_read(curLoc,Y),
   (Y == kelas ->
-	  (X == 100 ->
+	  (X == '100' ->
 		write('Kamu diterima')
 		;
 		write('Kamu difriendzone')
@@ -63,7 +63,7 @@ friendzone_senpai :-
 	g_read(affinity,X),
 	g_read(curLoc, Y),
 	(==(Y,kelas) ->
-		(X == 100 ->
+		(X == '100' ->
 			write('Senpai : jadi.. selama ini kamu nge-friendzone-in AKU?'),
 			nl,
 			write('Senpai : tega kamu, hiks..'),
@@ -100,16 +100,17 @@ beli(N) :-
     (member(uang,Y) ->
       gabisa(Gab),
       (member(N,Gab) ->
-        write('item tersebut dialarang untuk dibeli'),!
+        write('item tersebut dilarang untuk dibeli'),nl,!
         ;
         delete(Y,uang,Z),
         append([N],Z,M),
-        g_assign(inventory,M),!
+        g_assign(inventory,M),
+        write('kamu membeli '), write(N),nl,!
       )
       ;
-      write('kamu ga punya uang untuk membeli barang')
+      write('kamu ga punya uang untuk membeli barang'),nl
     )
     ;
-    write('kamu harus berada di toko untuk membeli')
+    write('kamu harus berada di toko untuk membeli'),nl
   ).
 
