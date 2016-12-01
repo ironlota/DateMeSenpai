@@ -32,14 +32,13 @@ giveguard(X) :-
 	).
 
 givestone(X) :-
-	g_read(affinity,A),
 	(X == jimatKeberuntungan ->
-		write('Hmm. Dari cara menjahitnya.. Pilihan warnanya.. Perasaan yang ada di dalamnya..'),nl,
-		write('Milik Senpai ya? ;)'),nl,
-		write('Kamu tahu? Kelihatannya aku tidak perlu banyak bekerja.'),nl,
-		write('Tanpa pengetahuan Goddess pun orang bisa melihat sepertinya Senpai menyukaimu.'),nl,
-		write('Baiklah, hubungan baik ini akan ku restui 0;)'),nl,
-		write('Hiyaaah!~'),nl,
+		write('batuCinta : Hmm. Dari cara menjahitnya.. Pilihan warnanya.. Perasaan yang ada di dalamnya..'),nl,
+		write('batuCinta : Milik Senpai ya? ;)'),nl,
+		write('batuCinta : Kamu tahu? Kelihatannya aku tidak perlu banyak bekerja.'),nl,
+		write('batuCinta : Tanpa pengetahuan Goddess pun orang bisa melihat sepertinya Senpai menyukaimu.'),nl,
+		write('batuCinta : Baiklah, hubungan baik ini akan ku restui 0;)'),nl,
+		write('batuCinta : Hiyaaah!~'),nl,
 		g_assign(affinity,'100'),
 		g_read(inventory,I),
 		delete(I,X,N),
@@ -51,22 +50,22 @@ givestone(X) :-
 givegirl(X) :-
 	g_read(affinity,A),
 	(X == penghapus ->
-		write('Hai Kouhai ada apa?'),nl,
-		write('Oh ini! Ini penghapus yang kujatuhkan lalu hilang, dimana kamu menemukannya?'),nl,
-		write('Kelas? Oh iya benar tentu saja :p'),nl,
-		write('Terima kasih ya kouhai yang baik :)'),nl,
-		write('Kamu tahu, aku sampai meninggalkan bukuku untuk mencari penghapus ini!'),nl,
+		write('senpai : Hai Kouhai ada apa?'),nl,
+		write('senpai : Oh ini! Ini penghapus yang kujatuhkan lalu hilang, dimana kamu menemukannya?'),nl,
+		write('senpai : Kelas? Oh iya benar tentu saja :p'),nl,
+		write('senpai : Terima kasih ya kouhai yang baik :)'),nl,
+		write('senpai : Kamu tahu, aku sampai meninggalkan bukuku untuk mencari penghapus ini!'),nl,
 		g_assign(affinity,'20'),
 		g_read(inventory,I),
 		delete(I,X,N),
 		g_assign(inventory,N)
 	; X == buku ->
 		(A == '20' ->
-			write('Hai lagi Kouhai, ada perlu apa?'),nl,
-			write('Oh! Itu buku yang aku tinggalkan di perpustakaan!'),nl,
-			write('Bagaimana kamu bisa tahu itu buku milikku?'),nl,
-			write('Oh ya, sebagai gantinya, apa kamu ada payung untuk pulang?'),nl,
-			write('Nah! Pas deh, aku memiliki payung di lokerku, nih kuberikan kuncinya.'),nl,
+			write('senpai : Hai lagi Kouhai, ada perlu apa?'),nl,
+			write('senpai : Oh! Itu buku yang aku tinggalkan di perpustakaan!'),nl,
+			write('senpai : Bagaimana kamu bisa tahu itu buku milikku?'),nl,
+			write('senpai : Oh ya, sebagai gantinya, apa kamu ada payung untuk pulang?'),nl,
+			write('senpai : Nah! Pas deh, aku memiliki payung di lokerku, nih kuberikan kuncinya.'),nl,
 			g_assign(affinity,'40'),
 			g_read(inventory,I),
 			append([kunciLoker],I,Z),
@@ -76,12 +75,12 @@ givegirl(X) :-
 			write('Sebelum kamu sempat memanggil senpai, ia menjauh dan bergabung dengan teman-temannya..'),nl
 		)
 	; X == kacamata ->
-		write('Halo Kouhai!'),nl,
-		write('Ah ada apa ini? Kacamata?'),nl,
-		write('Wah terimakasih Kouhai! Bagaimana kamu bisa tau warna kesukaanku?'),nl,
-		write('Oiya! Jangan pergi dulu Kouhai.'),nl,
-		write('Ini, sebenarnya aku sudah ingin memberikan ini kepadamu, tapi karena suatu lain hal aku.. hehe..'),nl,
-		write('Ya pokoknya ini untukmu lah! Good Luck charm buatanku sendiri loh ;)'),nl,
+		write('senpai : Halo Kouhai!'),nl,
+		write('senpai : Ah ada apa ini? Kacamata?'),nl,
+		write('senpai : Wah terimakasih Kouhai! Bagaimana kamu bisa tau warna kesukaanku?'),nl,
+		write('senpai : Oiya! Jangan pergi dulu Kouhai.'),nl,
+		write('senpai : Ini, sebenarnya aku sudah ingin memberikan ini kepadamu, tapi karena suatu lain hal aku.. hehe..'),nl,
+		write('senpai : Ya pokoknya ini untukmu lah! Good Luck charm buatanku sendiri loh ;)'),nl,
 		g_assign(affinity,'60'),
 		g_read(inventory,I),
 		append([jimatKeberuntungan],I,Z),

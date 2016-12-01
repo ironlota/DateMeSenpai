@@ -50,13 +50,29 @@ confess :-
   g_read(curLoc,Y),
   (Y == kelas ->
 	  (X == '100' ->
-		write('Kamu diterima')
+		write('Kamu diterima'),nl,
+    write('senpai : Daisuki kouhai!'),nl,
+    write('senpai : Oops, not kouhai, but darling ♥')
 		;
-		write('Kamu difriendzone')
+		write('senpai : Hmm, mungkin kita lebih baik berteman aja deh ya hehe..'),nl,
+    write('senpai : Maafin aku ya :(')
 	  ),nl,
       summary_stat
-      ;
-      write('Tidak ada senpai di ruangan ini'),nl
+  ; Y == ruangSatpam ->
+      write('satpam : .... Ba-bagaimana kamu mengetahui kalo aku "wanita"?'),nl,
+      write('satpam : i love you so much ♥'), nl,
+      write('Kamu lari terbirit-birit'), nl,
+      write('satpam : HEI! Mau kemana kamu! Sini main sama om!'),nl
+  ; Y == kamarOrtu->
+      write('mama : mama juga sayang sama kamu kok nak, gausah kamu bilang juga gapapa'),nl,
+      write('papa : bacot kamu nak, pasti ada maunya nih!'), nl,
+      write('mama : hus, papa jangan gitu dong, jarang-jarang anak kita ngomong gini loh'), nl,
+      write('papa : bacot kamu ma!'),nl
+  ; Y == halamanBelakang->
+      write('batuCinta : kamu suka yang keras-keras ya? ...'),nl,
+      write('batuCinta : seperti batu? ;)'),nl
+  ;
+      write('Kukuh, Winarto, Ray, Adrian : kami juga sayang kamu kok ♥'),nl
   ).
 
 friendzone_senpai :-

@@ -22,8 +22,21 @@ loop :-
 
 %Edit di sini untuk menambahkan status akhir game
 summary_stat :-
-  write('Permainan berakhir'),
-  nl,g_assign(gameover,1),true.
+  write('Permainan berakhir'),nl,
+  stat,nl,nl,
+  write('Kukuh    : Mati lu cok!'), nl,
+  write('Winarto  : Bayar lu cok!'), nl,
+  write('Ray      : Donate us cok!'), nl,
+  write('Adrian   : Jomblo ya cok? Nyari cewenya kok disini?'), nl,
+  write('Kukuh, Winarto, Ray : Diam lu pe, beban!'), nl,
+  write('Adrian   : Kamu ga punya hak ngejudge AKU!'), nl,nl,nl,
+  write(' _______________________________'),nl,
+  write('|  Kukuh        (Roleplay)      |'),nl,
+  write('|  Winarto      (Stuntman)      |'),nl,
+  write('|  Ray Andrew   (Voice Actor)   |'),nl,
+  write('|  Adrian HP    (Cameo)         |'),nl,
+  write(' \\_____________________________/'),nl,
+  g_assign(gameover,1),true.
 
 available(instruksi).
 available(new).
@@ -35,19 +48,19 @@ available(pause).
 available(resume).
 available(save).
 available(look).
-available(take(Barang)).
-available(drop(Barang)).
+available(take(_)).
+available(drop(_)).
 available(talk).
 available(n).
 available(s).
 available(e).
 available(w).
-available(jawab(Jawaban)).
+available(jawab(_)).
 available(friendzone_senpai).
 available(confess).
-available(examine(Barang)).
-available(give(Barang)).
-available(beli(Barang)).
+available(examine(_)).
+available(give(_)).
+available(beli(_)).
 
 system_func(new).
 system_func(load).
@@ -74,26 +87,26 @@ do(X) :- ( available(X) ->
                     (system_func(X) ->
                         X
                     ;
-                        write('Woop''s you are in Pause state, you only can do new, load, exit, instruksi, clear, resume'),
+                        write('Carry Me Senpai : Woop''s you are in Pause state, you only can do new, load, exit, instruksi, clear, resume'),
                         nl
                     )
                 ;
                     (\+system_func_running(X) ->
                         X
                     ;
-                        write('Forbidden action!'),nl
+                        write('Carry Me Senpai : Forbidden action!'),nl
                     )
                 )
             ;
                 (system_func_not_running(X) ->
                     X
                 ;
-                    write('Forbidden action!'),
+                    write('Carry Me Senpai : Forbidden action!'),
                     nl
                 )
             )
         ;
-            write('Woop''s invalid functions ' : X),nl
+            write('Carry Me Senpai : Woop''s invalid functions ' : X),nl
          ).
 
 exit :-
@@ -254,7 +267,7 @@ assign_list(X) :-
           g_assign(affinity,Z),
           g_assign(location,E).
 
-open_file(F,R,S) :-
+open_file(F,_,S) :-
      catch( open(F, read, S),_,( write('can''t open file': F), nl, fail) ).
      %http://www.amzi.com/manuals/amzi/pro/ref_io.htm#OpenAndClosingFiles
 
@@ -273,7 +286,7 @@ write_res_main_menu(File,Status) :-
     read(Save,Res),
     Res = [A,B],
     A = [H1|[T1]],
-    B = [H2|[T2]],
+    B = [_|[T2]],
     (H1 == Status ->
         print_list(T1)
     ;
@@ -282,7 +295,7 @@ write_res_main_menu(File,Status) :-
     close(Save),
     nl.
 
-write_res_main_menu(File,Status) :- true.
+write_res_main_menu(_,_) :- true.
 
 save_state(File) :-
     g_read(player,A),
@@ -310,7 +323,7 @@ save_state(File) :-
     ),
     close(Save).
 
-save_inventory(Save,[]).
+save_inventory(_,[]).
 save_inventory(Save,[H]) :-
     write(Save,''''),
     write(Save,H),
@@ -321,7 +334,7 @@ save_inventory(Save,[H|T]) :-
     write(Save,''','),
     save_inventory(Save,T).
 
-save_location(Save,[]).
+save_location(_,[]).
 save_location(Save,[H]) :-
     H = [A,B],
     write(Save,'['''),
@@ -349,7 +362,7 @@ look :-
     g_read(location,X),
     print_curloc,
     print_inv,
-    write('Daftar object yang ada di ruangan :'),nl,
+    nl,
     print_obj(X),
     print_npc,
     fail.
@@ -407,8 +420,11 @@ print_obj([[X|Y]|[]]) :-
 		(npc(X,Z) ->
 			true
 			;
-			write(X),
-			nl
+			write('Terdapat '),
+      write(X),
+      write(' di '),
+            write(Z),
+      nl
 		)
 		;
 		true
@@ -489,7 +505,7 @@ parsing_file_for_dialog(L) :-
     parse_char_dialog(L,X),
     parse_dialog(X).
 
-parse_char_dialog([[[A,B],[C,D],[E,F]]],X) :-
+parse_char_dialog([[[_,B],[_,D],[_,F]]],X) :-
     get_npc_based_location(W),
     (==(W,senpai) ->
         X = B

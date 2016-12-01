@@ -1,10 +1,7 @@
-benda(kotakMusik).
-benda(uang).
-benda(payung).
-benda(rapor).
-benda(buku).
-benda(kunciSatpam).
-benda(penghapus).
+illegal(senpai).
+illegal(batuCinta).
+illegal(satpam).
+
 
 take(Thing):-
   g_read(affinity,A),
@@ -39,10 +36,10 @@ contains(Thing,[H|T],Here):-
       ;
       contains(Thing,T,Here)
   ).
-contains(Thing,[],Here):- fail.
+contains(_,[],_):- fail.
 
 is_takable(Thing):-
-  \+ benda(Thing),
+  illegal(Thing),
   kata(['Kamu ga bsa ngambil ',Thing]),
   !,fail.
 is_takable(_).
@@ -67,7 +64,7 @@ deletebarang(Thing,Brng,Here) :-
       ;
       deletebarang(Thing,T,Here)
   ).
-deletebarang(Thing,[],Here) :- fail.
+deletebarang(_,[],_) :- fail.
 
 
 % drop - allows the player to transfer a possession to a room
