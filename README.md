@@ -31,7 +31,7 @@ Wget (or another downloader application)
 A step by step series of examples that tell you have to get a development env running
 
 ```
-wget https://github.com/ironlota/DateMeSenpai/archive/master.zip
+wget https://github.com/rayandrews/DateMeSenpai/archive/master.zip
 unzip master.zip
 cd DateMeSenpai-master
 make
@@ -56,7 +56,7 @@ To check whether your installation success or not
 
 ## Authors
 
-* **Ray Andrew** - [Ironlota](https://github.com/ironlota)
+* **Ray Andrew** - [Ray Andrew](https://github.com/rayandrews)
 * **Winarto** - [YoWinarto](https://github.com/yowinarto)
 * **Adrian HP** - [adrianhp97](https://github.com/adrianhp97)
 * **Kukuh BR** - [kukuhbr](https://github.com/kukuhbr)
